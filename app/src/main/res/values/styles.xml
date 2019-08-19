@@ -1,0 +1,23 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <declare-styleable name="KingoitFlowLayout">
+        <attr name="flowLayoutRadius" format="dimension"/>
+        <attr name="flowLayoutTextColor" format="color"/>
+        <attr name="flowLayoutTextColorSelector" format="color"/>
+        <attr name="flowLayoutTextSize" format="dimension"/>
+        <attr name="flowLayoutLineColor" format="color"/>
+        <attr name="flowLayoutLineWidth" format="dimension"/>
+        <attr name="flowLayoutBackgroundColor" format="color"/>
+        <attr name="flowLayoutBackgroundColorSelector" format="color"/>
+        <attr name="flowLayoutDeleteBtnColor" format="color"/>
+    </declare-styleable>
+
+</resources>
