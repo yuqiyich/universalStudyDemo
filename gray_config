@@ -1,0 +1,7 @@
+{
+  "rule":"javascript:hitGray(%d,'%s','%s','%s',%d,'%s');function hitGray(version,phoneNum,deviceId,phoneBrand,androidSkdVersion,channel){\nif(version>300000150){//检测版本号\n  if((/^1[3456789]\\d{9}$/.test(phoneNum))\n  &&(phoneNum != 'undefined' && phoneNum != null && phoneNum != '')){ \n    console.log('phone'+phoneNum+'has hit gray') \n    return 1;\n }\n}\nreturn null \n}",
+  "downUrl":"https:www.baidu.com",
+  "forceFlag":"0",
+  "content":"灰度测试内容",
+  "versionCode":"123213"
+}
