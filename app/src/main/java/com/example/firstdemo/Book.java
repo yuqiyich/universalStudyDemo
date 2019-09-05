@@ -36,7 +36,7 @@ public class Book implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
+    //develop a add doc under describeContents
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.bookId);
