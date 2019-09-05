@@ -1,10 +1,10 @@
 {
-  "rule":"javascript:hitGray(%d,'%s','%s','%s',%d,'%s');function hitGray(version,phoneNum,deviceId,phoneBrand,androidSkdVersion,channel){\nif(version<%s){//小于版本号就检测灰度规则\//手机号码列表\nif(phoneNum != 'undefined' && phoneNum != null && phoneNum != ''\n&&%s.indexOf(phoneNum) != -1)\n{\n console.log('phoneNum  has hitGray list')\nreturn 1;\n}\n//手机号码规则\nif(/%s/.test(phoneNum))\n{ \nconsole.log('phoneNum rule has hitGray')\nreturn 1;\n}\n//to add you rules below\n}\nconsole.log('no rule match update')\nreturn null \n}",
+  "rule":"javascript:hitGray(%d,'%s','%s','%s',%d,'%s');function hitGray(version,phoneNum,deviceId,phoneBrand,androidSkdVersion,channel){\nif(version<%s){//小于版本号就检测灰度规则\//手机号码列表\nif(phoneNum != 'undefined' && phoneNum != null && phoneNum != ''\n&&'%s'.indexOf(phoneNum) != -1)\n{\n console.log('phoneNum  has hitGray list')\nreturn 1;\n}\n//手机号码规则\nif(/'%s'/.test(phoneNum))\n{ \nconsole.log('phoneNum rule has hitGray')\nreturn 1;\n}\n//to add you rules below\n}\nconsole.log('no rule match update')\nreturn null \n}",
   "downUrl":"https://lzidt.vips100.com/v2/delivery/data/119547292af54e999e335aaa11995653/?LBC=meta&token=&aid=532917&rec_log=true",
   "forceFlag":"0",
   "isRuleOn":true,
-  "content":"灰度测试内容",
-  "phoneNumReg":"",
+  "content":"灰度测试内容新版",
   "phoneNumList":"13712345678",
+  "phoneNumReg":"",
   "versionCode":"300000151"
 }
