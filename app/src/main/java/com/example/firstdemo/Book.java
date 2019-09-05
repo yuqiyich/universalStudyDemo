@@ -7,10 +7,10 @@ public class Book implements Parcelable {
     //develop b add doc
     public int bookId;
     public String bookName;
-  //develop a add doc
+    //develop a add doc
     public Book() {
     }
-
+    //develop a modify Book.java
     public Book(int bookId, String bookName) {
         this.bookId = bookId;
         this.bookName = bookName;
