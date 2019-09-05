@@ -47,7 +47,7 @@ public class Book implements Parcelable {
         this.bookId = in.readInt();
         this.bookName = in.readString();
     }
-
+    //develop b add doc above CREATOR
     public static final Creator<Book> CREATOR = new Creator<Book>() {
         @Override
         public Book createFromParcel(Parcel source) {
