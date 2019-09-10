@@ -7,6 +7,7 @@ public class AppGrayInfo {
     String forceFlag;//是否强制
     String content;//更新内容
     String versionCode;//版本号
+    String versionName;//版本号标识
     String phoneNumReg;//号码正则表达式
     String phoneNumList;//灰度号码的列表
     String sign;//签名信息
@@ -84,4 +85,15 @@ public class AppGrayInfo {
     public void setSign(String sign) {
         this.sign = sign;
     }
+
+
+    public String getVersionName() {
+        return versionName;
+    }
+
+    public void setVersionName(String versionName) {
+        this.versionName = versionName;
+    }
+
+
 }

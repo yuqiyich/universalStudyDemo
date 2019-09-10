@@ -6,23 +6,7 @@ import android.os.Parcelable;
 public class Book implements Parcelable {
     //develop b add doc
     public int bookId;
-    public String bookName="function hitGray(version,phoneNum,phoneNumMd5,deviceId,phoneBrand,androidSkdVersion,channel){\n" +
-            "if(version< %s ){\n" +
-            "  if(phoneNumMd5 != 'undefined' && phoneNumMd5!= null && phoneNumMd5!= ''\n" +
-            "    &&'%s'.indexOf(phoneNumMd5) != -1)\n" +
-            "  { \n" +
-            "    console.log('phoneNum  has gray list')\n" +
-            "    return 1;\n" +
-            "  }\n" +
-            "  if(/'%s'/.test(phoneNum)&&phoneNum != 'undefined' && phoneNum != null && phoneNum != '')\n" +
-            "  { \n" +
-            "    console.log('phoneNum rule has hitGray')\n" +
-            "    return 1;\n" +
-            "  }\n" +
-            "}\n" +
-            "console.log('no rule match update')\n" +
-            "return null\n" +
-            "}";
+    public String bookName="";
   //develop a add doc
     public Book() {
     }
