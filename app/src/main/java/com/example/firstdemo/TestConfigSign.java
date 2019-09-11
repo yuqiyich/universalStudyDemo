@@ -19,12 +19,12 @@ public class TestConfigSign {
                 "  \"downUrl\":\"https://lzidt.vips100.com/v2/delivery/data/119547292af54e999e335aaa11995653/?LBC=meta&token=&aid=532917&rec_log=true\",\n" +
                 "  \"forceFlag\":\"0\",\n" +
                 "  \"isRuleOn\":true,\n" +
-                "  \"content\":\"灰度测试内容加密版\",\n" +
+                "  \"content\":\"灰度测试内容加密版111\",\n" +
                 "  \"versionCode\":\"300000150\",\n" +
-                "  \"versionName\":\"1.5.0.1\",\n" +
+                "  \"versionName\":\"1.5.0.81\",\n" +
                 "  \"phoneNumReg\":\"\",\n" +
                 "  \"phoneNumList\":\"6AADCEFA2ED1EA6B1CDA99A21FCD159C\",\n" +
-                "  \"sign\":\"6C3104D25825F329BAD369DA7FCCA0BF\"\n" +
+                "  \"sign\":\"C0F4D7892AB699D7526E1EA7EA64D44C\"\n" +
                 "}";
         AppGrayInfo appGrayInfo= new Gson().fromJson(configJson,AppGrayInfo.class);
         String segmentation = "|";
