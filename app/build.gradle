@@ -1,10 +1,7 @@
 apply plugin: 'com.android.application'
-<<<<<<< HEAD
 apply plugin: com.yich.FirstPlugin
-=======
 
 
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
 android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
@@ -16,7 +13,6 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-<<<<<<< HEAD
     signingConfigs {
         appPro {
             keyAlias 'ruqi_client'
@@ -25,8 +21,6 @@ android {
             storePassword 'ruqi123456'
         }
     }
-=======
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
     sourceSets {
         main {
             java.srcDirs = ['src/main/java', 'src/main/aidl']
@@ -34,19 +28,13 @@ android {
     }
     buildTypes {
         release {
-<<<<<<< HEAD
             signingConfig signingConfigs.appPro
-=======
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug{
             minifyEnabled false
-<<<<<<< HEAD
             signingConfig signingConfigs.appPro
-=======
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
         }
@@ -54,23 +42,15 @@ android {
 }
 
 dependencies {
-<<<<<<< HEAD
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-=======
     implementation fileTree(dir: 'libs', include: ['*.jar'])
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.1'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.squareup.okhttp3:okhttp:3.6.0'
     implementation 'com.google.code.gson:gson:2.8.5'
-<<<<<<< HEAD
     api 'org.reactivestreams:reactive-streams:1.0.2'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-2'
     implementation files('lib/LogcatOfflineViewer.jar')
-=======
 
-    api "org.reactivestreams:reactive-streams:1.0.2"
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-2'
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
 }
