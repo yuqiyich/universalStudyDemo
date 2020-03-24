@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+apply plugin: com.yich.FirstPlugin
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
+    defaultConfig {
+        applicationId "com.example.firstdemo"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        appPro {
+            keyAlias 'ruqi_client'
+            keyPassword 'ruqi123456'
+            storeFile file('ruqi_client.jks')
+            storePassword 'ruqi123456'
+        }
+    }
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/aidl']
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.appPro
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug{
+            minifyEnabled false
+            signingConfig signingConfigs.appPro
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.squareup.okhttp3:okhttp:3.6.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    api 'org.reactivestreams:reactive-streams:1.0.2'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-2'
+    implementation files('lib/LogcatOfflineViewer.jar')
+}
