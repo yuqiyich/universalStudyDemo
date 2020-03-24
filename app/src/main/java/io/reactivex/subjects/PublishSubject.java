@@ -155,7 +155,10 @@ public final class PublishSubject<T> extends Subject<T> {
      * @return true if successful, false if the subject has terminated
      */
     boolean add(PublishDisposable<T> ps) {
+<<<<<<< HEAD
         System.out.println("PublishSubject--》add（）");
+=======
+>>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
         for (;;) {
             PublishDisposable<T>[] a = subscribers.get();
             if (a == TERMINATED) {
@@ -169,7 +172,10 @@ public final class PublishSubject<T> extends Subject<T> {
             b[n] = ps;
 
             if (subscribers.compareAndSet(a, b)) {
+<<<<<<< HEAD
                 System.out.println("PublishSubject--》add（）--》compareAndSet +1成功"+subscribers.hashCode());
+=======
+>>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
                 return true;
             }
         }
@@ -181,7 +187,10 @@ public final class PublishSubject<T> extends Subject<T> {
      */
     @SuppressWarnings("unchecked")
     void remove(PublishDisposable<T> ps) {
+<<<<<<< HEAD
         System.out.println("PublishSubject--》remove（）");
+=======
+>>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
         for (;;) {
             PublishDisposable<T>[] a = subscribers.get();
             if (a == TERMINATED || a == EMPTY) {
@@ -211,7 +220,10 @@ public final class PublishSubject<T> extends Subject<T> {
                 System.arraycopy(a, j + 1, b, j, n - j - 1);
             }
             if (subscribers.compareAndSet(a, b)) {
+<<<<<<< HEAD
                 System.out.println("PublishSubject--》remove（）--》compareAndSet -1成功"+subscribers.hashCode());
+=======
+>>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
                 return;
             }
         }
@@ -227,7 +239,11 @@ public final class PublishSubject<T> extends Subject<T> {
     @Override
     public void onNext(T t) {
         ObjectHelper.requireNonNull(t, "onNext called with null. Null values are generally not allowed in 2.x operators and sources.");
+<<<<<<< HEAD
         System.out.println("PublishSubject的size"+subscribers.get().length+"subscribers-hashcode:"+subscribers.hashCode());
+=======
+
+>>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
         if (subscribers.get() == TERMINATED) {
             return;
         }
@@ -239,7 +255,10 @@ public final class PublishSubject<T> extends Subject<T> {
     @SuppressWarnings("unchecked")
     @Override
     public void onError(Throwable t) {
+<<<<<<< HEAD
         System.out.println("PublishSubject--》onError（）");
+=======
+>>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
         ObjectHelper.requireNonNull(t, "onError called with null. Null values are generally not allowed in 2.x operators and sources.");
         if (subscribers.get() == TERMINATED) {
             RxJavaPlugins.onError(t);
@@ -333,7 +352,10 @@ public final class PublishSubject<T> extends Subject<T> {
 
         @Override
         public void dispose() {
+<<<<<<< HEAD
             System.out.println("PublishDisposable--》dispose()");
+=======
+>>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
             if (compareAndSet(false, true)) {
                 parent.remove(this);
             }

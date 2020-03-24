@@ -1,9 +1,12 @@
 package com.example.firstdemo;
 
 
+<<<<<<< HEAD
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.LinkedList;
+=======
+>>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
 import java.util.Map;
 
 public class TestSYSENV {
@@ -13,6 +16,7 @@ public class TestSYSENV {
         //appVersion:300000150phone num:deviceId:99001155052774phoneBrand:OnePlus-ONEPLUS A5010androidApiVer:28channel:null
         String rule="hitGray(%d,'%s','%s','%s',%d,'%s')";
 //        enviorntmentVars.entrySet().forEach(System.out::println);
+<<<<<<< HEAD
 //        System.out.println(String.format(rule,300000150,"","99001155052774","OnePlus-ONEPLUS A5010",28,null));
         System.out.println(DoubleFormat2(0.018));
         System.out.println(DoubleFormat2(00.018));
@@ -60,4 +64,11 @@ public class TestSYSENV {
         }
     }
 
+=======
+        System.out.println(String.format(rule,300000150,"","99001155052774","OnePlus-ONEPLUS A5010",28,null));
+
+    }
+
+
+>>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
 }

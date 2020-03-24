@@ -52,7 +52,10 @@ import io.reactivex.plugins.RxJavaPlugins;
 
     @Override
     public void onSubscribe(Disposable s) {
+<<<<<<< HEAD
         System.out.println("SerializedSubject——-》onSubscribe（）");
+=======
+>>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
         boolean cancel;
         if (!done) {
             synchronized (this) {
@@ -85,7 +88,10 @@ import io.reactivex.plugins.RxJavaPlugins;
 
     @Override
     public void onNext(T t) {
+<<<<<<< HEAD
         System.out.println("SerializedSubject——-》onNext（）");
+=======
+>>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
         if (done) {
             return;
         }

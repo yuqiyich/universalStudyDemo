@@ -90,8 +90,11 @@ implements Runnable, Callable<Object>, Disposable {
     public void setFuture(Future<?> f) {
         for (;;) {
             Object o = get(FUTURE_INDEX);
+<<<<<<< HEAD
             System.out.println("ScheduledRunnable---->setFuture()--->check+o:"+(o!=null?o.hashCode():"null")+"DONE:"+DONE.hashCode()
                     +"SYNC_DISPOSED:"+SYNC_DISPOSED.hashCode()+"ASYNC_DISPOSED:"+ASYNC_DISPOSED.hashCode());
+=======
+>>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
             if (o == DONE) {
                 return;
             }
@@ -103,9 +106,13 @@ implements Runnable, Callable<Object>, Disposable {
                 f.cancel(true);
                 return;
             }
+<<<<<<< HEAD
             boolean succ =compareAndSet(FUTURE_INDEX, o, f);
             System.out.println("ScheduledRunnable---->setFuture()-compareAndSet result:"+succ);
             if (succ) {
+=======
+            if (compareAndSet(FUTURE_INDEX, o, f)) {
+>>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
                 return;
             }
         }

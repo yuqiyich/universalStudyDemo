@@ -20,7 +20,11 @@ public class TestConfigSign {
                 "  \"forceFlag\":\"0\",\n" +
                 "  \"isRuleOn\":true,\n" +
                 "  \"content\":\"灰度测试内容加密版\",\n" +
+<<<<<<< HEAD
                 "  \"versionCode\":\"300000150s\",\n" +
+=======
+                "  \"versionCode\":\"300000150\",\n" +
+>>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
                 "  \"versionName\":\"1.5.0.81\",\n" +
                 "  \"phoneNumReg\":\"\",\n" +
                 "  \"phoneNumList\":\"6AADCEFA2ED1EA6B1CDA99A21FCD159C\",\n" +

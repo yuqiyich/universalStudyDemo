@@ -1,2 +1,5 @@
 include ':app'
+<<<<<<< HEAD
 include ':plugintest'
+=======
+>>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
