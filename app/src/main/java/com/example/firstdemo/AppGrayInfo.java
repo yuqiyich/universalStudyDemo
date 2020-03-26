@@ -6,11 +6,7 @@ public class AppGrayInfo {
     String downUrl;//apk 下载地址
     String forceFlag;//是否强制
     String content;//更新内容
-<<<<<<< HEAD
-    int versionCode;//版本号
-=======
     String versionCode;//版本号
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
     String versionName;//版本号标识
     String phoneNumReg;//号码正则表达式
     String phoneNumList;//灰度号码的列表
@@ -74,19 +70,12 @@ public class AppGrayInfo {
         this.content = content;
     }
 
-<<<<<<< HEAD
-    public int getVersionCode() {
-        return versionCode;
-    }
 
-    public void setVersionCode(int versionCode) {
-=======
     public String getVersionCode() {
         return versionCode;
     }
 
     public void setVersionCode(String versionCode) {
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
         this.versionCode = versionCode;
     }
 

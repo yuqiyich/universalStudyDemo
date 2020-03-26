@@ -1,17 +1,12 @@
 package com.example.firstdemo;
 
 import android.content.ComponentName;
-<<<<<<< HEAD
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-=======
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.graphics.Bitmap;
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-<<<<<<< HEAD
 
 import com.example.firstdemo.secret.RSAUtil;
 
@@ -43,16 +37,14 @@ import io.reactivex.functions.Function;
 import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
 
-public class MainActivity extends AppCompatActivity {
-    private String TAG="MainActivity";
-=======
+
 import io.reactivex.*;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
+    private static final String TAG ="yich" ;
     IBookManager mIBookManager;
     private ServiceConnection mServiceConnection=new ServiceConnection() {
         @Override
@@ -82,11 +74,8 @@ public class MainActivity extends AppCompatActivity {
         options.inMutable=false;
         options.inSampleSize=2;
         options.inJustDecodeBounds=true;
-<<<<<<< HEAD
         RxJavaPlugins.setErrorHandler(new RxErrorHandler());
         subcribeMessage();
-=======
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
 //        startActivity(null);
 //        SystemManager.getService("name");
         tv.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-<<<<<<< HEAD
                 testGetPublicKey();
                 MessageBus.getInstance().sendData("我是消息");
 //                TestArrayMap.testArrayMap();
@@ -165,12 +153,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNext(String s) {
                 System.out.println("zip--->onNext---s:"+s);
-=======
 //                TestArrayMap.testArrayMap();
 //                testRxjava2();
 //                testRxBusSendEvent();
             }
-        });
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
         Handler had=new Handler(){};
         RxBus.getInstance().toObservable(RxEventData.class).subscribe(new Observer<RxEventData>() {
             @Override
@@ -181,21 +178,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNext(RxEventData rxEventData) {
                 System.out.println("RxEventData data send"+ Thread.currentThread().getName());
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
             }
 
             @Override
             public void onError(Throwable e) {
-<<<<<<< HEAD
                 System.out.println("zip--->onError---s:"+e.getMessage());
-=======
 
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
             }
 
             @Override
             public void onComplete() {
-<<<<<<< HEAD
                 System.out.println("zip--->onComplete---s:");
             }
         });
@@ -205,19 +197,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-=======
 
-            }
-        });
-        Toast.makeText(getApplicationContext(),"绑定了服务", Toast.LENGTH_SHORT).show();
-    }
-
-    private void testRxBusSendEvent() {
-        RxBus.getInstance().post(new RxEventData());
-    }
-
-
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
     /**
      * rxjava 的 Observable.create
      */
@@ -281,7 +261,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-<<<<<<< HEAD
 
     /**
      * rxjava 的 Observable.create
@@ -449,6 +428,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-=======
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
 }

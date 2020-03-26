@@ -5,11 +5,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-<<<<<<< HEAD
-        android:label="hookapp"
-=======
         android:label="@string/app_name"
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

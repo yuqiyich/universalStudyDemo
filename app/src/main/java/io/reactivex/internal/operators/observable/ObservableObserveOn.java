@@ -159,13 +159,9 @@ public final class ObservableObserveOn<T> extends AbstractObservableWithUpstream
         }
 
         void schedule() {
-<<<<<<< HEAD
             int tag= getAndIncrement();
             System.out.println("ObserveOnObserver----》schedule()-->tag:"+tag);
-            if (tag == 0) {
-=======
             if (getAndIncrement() == 0) {
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
                 worker.schedule(this);
             }
         }
@@ -177,10 +173,7 @@ public final class ObservableObserveOn<T> extends AbstractObservableWithUpstream
             final Observer<? super T> a = actual;
 
             for (;;) {
-<<<<<<< HEAD
                 System.out.println("ObserveOnObserver----》drainNormal()-->start");
-=======
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
                 if (checkTerminated(done, q.isEmpty(), a)) {
                     return;
                 }
@@ -208,19 +201,12 @@ public final class ObservableObserveOn<T> extends AbstractObservableWithUpstream
                     if (empty) {
                         break;
                     }
-<<<<<<< HEAD
                     System.out.println("ObserveOnObserver----》before-->actual.onNext()-->value:"+v);
-=======
-
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
                     a.onNext(v);
                 }
 
                 missed = addAndGet(-missed);
-<<<<<<< HEAD
                 System.out.println("ObserveOnObserver----》 after-->actual.onNext()__miss="+missed);
-=======
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
                 if (missed == 0) {
                     break;
                 }
@@ -266,10 +252,7 @@ public final class ObservableObserveOn<T> extends AbstractObservableWithUpstream
 
         @Override
         public void run() {
-<<<<<<< HEAD
             System.out.println("ObserveOnObserver----》run()-->outputFused:"+outputFused);
-=======
->>>>>>> 3d25ab1838fecdf4f5588886338bba552da364d6
             if (outputFused) {
                 drainFused();
             } else {
