@@ -16,7 +16,9 @@
             android:gravity="center"
             android:textSize="18sp"
        />
-    <View android:layout_width="match_parent"
+    <View
+            android:id="@+id/yellow_view"
+            android:layout_width="match_parent"
           android:layout_height="100dp"
           android:background="#ffff00"
           />
@@ -30,7 +32,7 @@
               android:layout_height="wrap_content"
 android:orientation="vertical">
 
-    <com.example.firstdemo.FlowLayout
+    <com.example.firstdemo.test.FlowLayout
             android:id="@+id/kingoit_flow_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,6 +57,6 @@ android:orientation="vertical">
                   android:layout_height="match_parent"
                   android:text="234234"
                   android:background="#ff00ff"/>
-    </com.example.firstdemo.FlowLayout>
+    </com.example.firstdemo.test.FlowLayout>
 </LinearLayout>
 </LinearLayout>

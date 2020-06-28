@@ -19,7 +19,15 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.firstdemo.secret.RSAUtil;
+import com.example.firstdemo.dialog.BottomSheetDialogDemo;
+import com.example.firstdemo.test.TestGson;
+import com.example.firstdemo.test.secret.RSAUtil;
+import com.example.firstdemo.test.Base64;
+import com.example.firstdemo.test.Book;
+import com.example.firstdemo.test.MessageBus;
+import com.example.firstdemo.test.RxBus;
+import com.example.firstdemo.test.RxEventData;
+import com.google.android.material.appbar.AppBarLayout;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,20 +35,16 @@ import java.io.StringWriter;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.*;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.exceptions.UndeliverableException;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.plugins.RxJavaPlugins;
-import io.reactivex.schedulers.Schedulers;
-
-
-import io.reactivex.*;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
@@ -63,8 +67,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView tv=findViewById(R.id.tv);
+        tv.setText("我要启动wxpay");
         Intent intentService = new Intent();
-        intentService.setAction("com.example.firstdemo.MyService");
+        intentService.setAction("com.example.firstdemo.test.MyService");
         intentService.setPackage(getPackageName());
         intentService.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         this.bindService(intentService, mServiceConnection, BIND_AUTO_CREATE);
@@ -76,11 +81,15 @@ public class MainActivity extends AppCompatActivity {
         options.inJustDecodeBounds=true;
         RxJavaPlugins.setErrorHandler(new RxErrorHandler());
         subcribeMessage();
+        TestGson.print();
 //        startActivity(null);
 //        SystemManager.getService("name");
+        findViewById(R.id.yellow_view).setOnClickListener(v->{
+        });
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                testRxThreadz();
                 if (mIBookManager!=null){
                     try {
                         mIBookManager.addBook(new Book(19,"aaaaa"));
@@ -90,16 +99,19 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                testGetPublicKey();
-                MessageBus.getInstance().sendData("我是消息");
+//                showBottomDialog();
+
+//                testGetPublicKey();
+//                MessageBus.getInstance().sendData("我是消息");
 //                TestArrayMap.testArrayMap();
 //                testRxjava2();
 //                testRxBusSendEvent();
 //                testRxjavaErrorHandler();
 
 //                testZip();
-                List<String> rootPackName=new ArrayList<>();
-                rootPackName.add("asfddsfa");
+//                List<String> rootPackName=new ArrayList<>();
+//                rootPackName.add("asfddsfa");
+
 //                RootUtils.isRooted(MainActivity.this,rootPackName);
 
 //                Toast.makeText(MainActivity.this,""+MulitAppCheckUtil.getMulitAppContextPath(MainActivity.this)+"----->"+checkByPackageName(MainActivity.this),Toast.LENGTH_LONG).show();
@@ -108,8 +120,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void showBottomDialog() {
+        BottomSheetDialogDemo bottomSheetDialogDemo =new BottomSheetDialogDemo();
+        bottomSheetDialogDemo.show(getSupportFragmentManager(),"demo");
+    }
 
- static Disposable disposable;
+
+    static Disposable disposable;
     public static  void testZip(){
         System.out.println("testZip start thread : " + Thread.currentThread().getName());
        if (disposable!=null&& !disposable.isDisposed()){
@@ -413,6 +430,68 @@ public class MainActivity extends AppCompatActivity {
 
     public void testDisgest(){
 
+//        EncryptUtils.decrypt("加密的字符传", defValue));
+
+    }
+
+  public void   testRxThreadz(){
+        Observable.create((ObservableOnSubscribe<Integer>) emitter -> {
+            System.out.println("######emitter  thread : string_result:" + Thread.currentThread().getName());
+//            emitter.onNext(12312);
+            emitter.onComplete();
+        }).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Integer>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        System.out.println("######onSubscribe  thread-------:" + Thread.currentThread().getName());
+                    }
+
+                    @Override
+                    public void onNext(Integer integer) {
+                        System.out.println("######onNext  thread : string_result:" +integer+ Thread.currentThread().getName());
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        System.out.println("######onError  thread : string_result:" + Thread.currentThread().getName());
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        System.out.println("######onComplete  thread : string_result:" + Thread.currentThread().getName());
+
+                    }
+                });
+    }
+
+    public void testRxjavaRepeat(){
+        Observable.just("yich")
+                .repeatWhen(observable -> observable.delay(5, TimeUnit.SECONDS))
+                .retryWhen(observable -> observable.delay(3, TimeUnit.SECONDS))
+                .subscribeOn(Schedulers.io()).subscribe(new Observer<String>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.d("Yich","onSubscribe result:"+d);
+            }
+
+            @Override
+            public void onNext(String s) {
+                Log.d("Yich","onNext string result:"+s);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d("Yich","onError result:"+e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+                Log.d("Yich","onComplete ");
+            }
+        });
 //        EncryptUtils.decrypt("加密的字符传", defValue));
 
     }

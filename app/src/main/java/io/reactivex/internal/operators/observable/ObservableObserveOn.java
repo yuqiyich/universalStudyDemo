@@ -161,7 +161,7 @@ public final class ObservableObserveOn<T> extends AbstractObservableWithUpstream
         void schedule() {
             int tag= getAndIncrement();
             System.out.println("ObserveOnObserver----》schedule()-->tag:"+tag);
-            if (getAndIncrement() == 0) {
+            if (tag == 0) {
                 worker.schedule(this);
             }
         }

@@ -2,7 +2,7 @@
 package com.example.firstdemo;
 
 // Declare any non-default types here with import statements
-import com.example.firstdemo.Book;
+import com.example.firstdemo.test.Book;
 interface IBookManager {
     /**
      * Demonstrates some basic types that you can use as parameters

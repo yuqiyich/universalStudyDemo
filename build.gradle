@@ -26,11 +26,11 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
+        jcenter()
         maven {
             url "https://maven.aliyun.com/repository/jcenter"
         }
-        google()
-        jcenter()
         
     }
 }

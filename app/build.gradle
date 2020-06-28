@@ -6,7 +6,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
     defaultConfig {
-        applicationId "com.example.firstdemo"
+        applicationId "com.example.firstdemo2"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -39,6 +39,10 @@ android {
 
         }
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 }
 
 dependencies {
@@ -50,7 +54,12 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.6.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     api 'org.reactivestreams:reactive-streams:1.0.2'
+    implementation  'com.google.android.material:material:1.0.0'
+    implementation  'com.tencent.map:tencent-map-vector-sdk:4.3.3.3'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-2'
     implementation files('lib/LogcatOfflineViewer.jar')
-
+    //java 层的代码hook工具
+    implementation 'me.weishu:epic:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    compile 'com.alibaba:fastjson:1.1.70.android'
 }
