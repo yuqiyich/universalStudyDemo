@@ -28,6 +28,7 @@ public final class ObservableCreate<T> extends Observable<T> {
     final ObservableOnSubscribe<T> source;
 
     public ObservableCreate(ObservableOnSubscribe<T> source) {
+        System.out.println("ObservableCreate  -----》construction");
         this.source = source;
     }
 

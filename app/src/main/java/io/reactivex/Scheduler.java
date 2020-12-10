@@ -200,7 +200,7 @@ public abstract class Scheduler {
         final Runnable decoratedRun = RxJavaPlugins.onSchedule(run);
 
         DisposeTask task = new DisposeTask(decoratedRun, w);
-        System.out.println("Scheduler----》scheduleDirect" );
+        System.out.println("Scheduler---->scheduleDirect init run:"+run.getClass().getSimpleName()+";final task:"+task.getClass().getSimpleName() );
         w.schedule(task, delay, unit);
 
         return task;
@@ -568,7 +568,7 @@ public abstract class Scheduler {
         public void run() {
             runner = Thread.currentThread();
             try {
-                System.out.println("DisposeTask----》run--->decoratedRunName:" +decoratedRun.getClass().getName());
+                System.out.println("Scheduler$DisposeTask---->run--->decoratedRunName:" +decoratedRun.getClass().getName());
                 decoratedRun.run();
             } finally {
                 dispose();
@@ -578,6 +578,7 @@ public abstract class Scheduler {
 
         @Override
         public void dispose() {
+            System.out.println("Scheduler$DisposeTask---->dispose()--- 如果发现dispose操作是在工作的这个线程，则调用shotdown，如果不在工作的这个线程，则直接shotdownNow，杀死所有发射源否当前线程："+(runner == Thread.currentThread()) );
             if (runner == Thread.currentThread() && w instanceof NewThreadWorker) {
                 ((NewThreadWorker)w).shutdown();
             } else {

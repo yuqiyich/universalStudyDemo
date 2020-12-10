@@ -130,10 +130,11 @@ public class NewThreadWorker extends Scheduler.Worker implements Disposable {
      */
     @NonNull
     public ScheduledRunnable scheduleActual(final Runnable run, long delayTime, @NonNull TimeUnit unit, @Nullable DisposableContainer parent) {
+
         Runnable decoratedRun = RxJavaPlugins.onSchedule(run);
 
         ScheduledRunnable sr = new ScheduledRunnable(decoratedRun, parent);
-
+        System.out.println("NewThreadWorker---->scheduleActual---init Runnable :"+run.getClass().getSimpleName()+";包装之后Runnable："+decoratedRun.getClass().getSimpleName()+"；最后包装的runnalbe转化为ScheduledRunnable" );
         if (parent != null) {
             if (!parent.add(sr)) {
                 return sr;
@@ -142,14 +143,14 @@ public class NewThreadWorker extends Scheduler.Worker implements Disposable {
 
         Future<?> f;
         try {
-            System.out.println("NewThreadWorker----》scheduleActual：放入线程池运行task获得Future放入ScheduledRunnable（也是当前被运行的任务）"+sr );
+            System.out.println("NewThreadWorker---->scheduleActual：放入线程池运行task获得Future放入ScheduledRunnable（也是当前被运行的任务）"+sr  );
             if (delayTime <= 0) {
                 f = executor.submit((Callable<Object>)sr);
             } else {
                 f = executor.schedule((Callable<Object>)sr, delayTime, unit);
             }
             sr.setFuture(f);
-            System.out.println("NewThreadWorker----》scheduleActual：end");
+            System.out.println("NewThreadWorker--->scheduleActual：end");
         } catch (RejectedExecutionException ex) {
             System.out.println("NewThreadWorker--->RejectedExecutionException");
             if (parent != null) {

@@ -24,16 +24,18 @@ public final class ObservableSubscribeOn<T> extends AbstractObservableWithUpstre
 
     public ObservableSubscribeOn(ObservableSource<T> source, Scheduler scheduler) {
         super(source);
+        System.out.println("ObservableSubscribeOn  -----》construction  inner source is:"+source.getClass().getSimpleName());
         this.scheduler = scheduler;
     }
 
     @Override
     public void subscribeActual(final Observer<? super T> s) {
+        System.out.println("ObservableSubscribeOn----》subscribeActual" );
         final SubscribeOnObserver<T> parent = new SubscribeOnObserver<T>(s);
 
         s.onSubscribe(parent);
-        System.out.println("ObservableSubscribeOn----》subscribeActual" );
 
+        System.out.println("ObservableSubscribeOn----》subscribeActual();do onSubscribe() ,and start call scheduler to do   SubscribeTask" );
         parent.setDisposable(scheduler.scheduleDirect(new SubscribeTask(parent)));
     }
 
@@ -45,12 +47,14 @@ public final class ObservableSubscribeOn<T> extends AbstractObservableWithUpstre
         final AtomicReference<Disposable> s;
 
         SubscribeOnObserver(Observer<? super T> actual) {
+            System.out.println("ObservableSubscribeOn$SubscribeOnObserver  ----->construction  inner observer is:"+actual.getClass().getSimpleName());
             this.actual = actual;
             this.s = new AtomicReference<Disposable>();
         }
 
         @Override
         public void onSubscribe(Disposable s) {
+            System.out.println("ObservableSubscribeOn$SubscribeOnObserver  ----->onSubscribe  ");
             DisposableHelper.setOnce(this.s, s);
         }
 
@@ -71,6 +75,7 @@ public final class ObservableSubscribeOn<T> extends AbstractObservableWithUpstre
 
         @Override
         public void dispose() {
+            System.out.println("ObservableSubscribeOn$SubscribeOnObserver  -----》dispose()  inner observer is:"+actual.getClass().getSimpleName());
             DisposableHelper.dispose(s);
             DisposableHelper.dispose(this);
         }

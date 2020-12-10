@@ -122,6 +122,7 @@ public enum DisposableHelper implements Disposable {
             current = field.getAndSet(d);
             if (current != d) {
                 if (current != null) {
+                    System.out.println("DisposableHelper----> dispose(?) current:"+current.getClass().getSimpleName());
                     current.dispose();
                 }
                 return true;

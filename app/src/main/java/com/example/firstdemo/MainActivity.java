@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.firstdemo.dialog.BottomSheetDialogDemo;
+import com.example.firstdemo.test.RxTest;
 import com.example.firstdemo.test.TestGson;
 import com.example.firstdemo.test.secret.RSAUtil;
 import com.example.firstdemo.test.Base64;
@@ -49,6 +50,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG ="yich" ;
+
+    TextView btn;
     IBookManager mIBookManager;
     private ServiceConnection mServiceConnection=new ServiceConnection() {
         @Override
@@ -67,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView tv=findViewById(R.id.tv);
+         btn=findViewById(R.id.testBtn);
         tv.setText("我要启动wxpay");
         Intent intentService = new Intent();
         intentService.setAction("com.example.firstdemo.test.MyService");
@@ -86,10 +90,24 @@ public class MainActivity extends AppCompatActivity {
 //        SystemManager.getService("name");
         findViewById(R.id.yellow_view).setOnClickListener(v->{
         });
+        findViewById(R.id.testBtn).setOnClickListener(v->{
+            startActivity(new Intent(MainActivity.this,AppbarTestActivity.class));
+
+        });
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                btn.setText("立即抢购");
+            }
+        }, 5000);
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                testRxThreadz();
+//                testRxThreadz();
+                RxTest rxTest =new RxTest();
+                rxTest.testRxDispose();
+//                new Handler().postDelayed(()->rxTest.mDisposeTest.dispose(),0);
+//                rxTest.testRxjavaTakeUtil();
                 if (mIBookManager!=null){
                     try {
                         mIBookManager.addBook(new Book(19,"aaaaa"));

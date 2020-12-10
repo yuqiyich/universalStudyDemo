@@ -30,6 +30,7 @@ public final class ObservableObserveOn<T> extends AbstractObservableWithUpstream
     final int bufferSize;
     public ObservableObserveOn(ObservableSource<T> source, Scheduler scheduler, boolean delayError, int bufferSize) {
         super(source);
+        System.out.println("ObservableObserveOn  -----》construction  inner source is:"+source.getClass().getSimpleName());
         this.scheduler = scheduler;
         this.delayError = delayError;
         this.bufferSize = bufferSize;
@@ -69,6 +70,7 @@ public final class ObservableObserveOn<T> extends AbstractObservableWithUpstream
         boolean outputFused;
 
         ObserveOnObserver(Observer<? super T> actual, Scheduler.Worker worker, boolean delayError, int bufferSize) {
+            System.out.println("ObservableObserveOn$ObserveOnObserver construction, inner observer:" +actual.getClass().getSimpleName());
             this.actual = actual;
             this.worker = worker;
             this.delayError = delayError;
@@ -102,14 +104,14 @@ public final class ObservableObserveOn<T> extends AbstractObservableWithUpstream
                 }
 
                 queue = new SpscLinkedArrayQueue<T>(bufferSize);
-                System.out.println("ObserveOnObserver----》onSubscribe start" );
+                System.out.println("ObservableObserveOn$ObserveOnObserver----》onSubscribe start" );
                 actual.onSubscribe(this);
             }
         }
 
         @Override
         public void onNext(T t) {
-            System.out.println("ObserveOnObserver----》onNext start" );
+            System.out.println("ObservableObserveOn$ObserveOnObserver----》onNext start" );
             if (done) {
                 return;
             }
@@ -117,7 +119,7 @@ public final class ObservableObserveOn<T> extends AbstractObservableWithUpstream
             if (sourceMode != QueueDisposable.ASYNC) {
                 queue.offer(t);
             }
-            System.out.println("ObserveOnObserver----》onNext--> schedule" );
+            System.out.println("ObservableObserveOn$ObserveOnObserver----》onNext--> schedule" );
             schedule();
         }
 
@@ -143,6 +145,7 @@ public final class ObservableObserveOn<T> extends AbstractObservableWithUpstream
 
         @Override
         public void dispose() {
+            System.out.println("ObservableObserveOn$ObserveOnObserver----》dispose()--> cancelled:"+cancelled );
             if (!cancelled) {
                 cancelled = true;
                 s.dispose();
@@ -160,7 +163,7 @@ public final class ObservableObserveOn<T> extends AbstractObservableWithUpstream
 
         void schedule() {
             int tag= getAndIncrement();
-            System.out.println("ObserveOnObserver----》schedule()-->tag:"+tag);
+            System.out.println("ObservableObserveOn$ObserveOnObserver----》schedule()-->tag:"+tag);
             if (tag == 0) {
                 worker.schedule(this);
             }
@@ -173,7 +176,7 @@ public final class ObservableObserveOn<T> extends AbstractObservableWithUpstream
             final Observer<? super T> a = actual;
 
             for (;;) {
-                System.out.println("ObserveOnObserver----》drainNormal()-->start");
+                System.out.println("ObservableObserveOn$ObserveOnObserver----》drainNormal()-->start");
                 if (checkTerminated(done, q.isEmpty(), a)) {
                     return;
                 }
@@ -201,12 +204,12 @@ public final class ObservableObserveOn<T> extends AbstractObservableWithUpstream
                     if (empty) {
                         break;
                     }
-                    System.out.println("ObserveOnObserver----》before-->actual.onNext()-->value:"+v);
+                    System.out.println("ObservableObserveOn$ObserveOnObserver----》before-->actual.onNext()-->value:"+v);
                     a.onNext(v);
                 }
 
                 missed = addAndGet(-missed);
-                System.out.println("ObserveOnObserver----》 after-->actual.onNext()__miss="+missed);
+                System.out.println("ObservableObserveOn$ObserveOnObserver----》 after-->actual.onNext()__miss="+missed);
                 if (missed == 0) {
                     break;
                 }
